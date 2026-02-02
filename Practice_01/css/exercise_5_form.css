@@ -1,0 +1,31 @@
+body {
+  background: #ccc;
+  padding-top: 50px;
+  font-family: sans-serif;
+}
+.modal {
+  background: white;
+  width: 600px;
+  margin: auto;
+  border: 1px solid #000;
+}
+.header {
+  background: blue;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+form {
+  padding: 20px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+input,
+select {
+  width: 100%;
+  box-sizing: border-box;
+}

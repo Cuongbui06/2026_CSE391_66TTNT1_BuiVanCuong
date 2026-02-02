@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EXERCISE_5_TABLE</title>
+    <link rel="stylesheet" href="../css/exercise_5_form.css" />
+  </head>
+  <body>
+    <div class="modal">
+      <div class="header">
+        New Employee
+        <span
+          onclick="location.href = 'exercise_5_table.html'"
+          style="float: right; cursor: pointer"
+          >X</span
+        >
+      </div>
+      <form>
+        <div class="grid">
+          <div>Name<br /><input /></div>
+          <div>Email<br /><input /></div>
+          <div>Phone<br /><input /></div>
+          <div>
+            Position<br />
+            <select>
+              <option>-- Select --</option>
+              <option>Staff</option>
+              <option>Manager</option>
+              <option>CEO</option>
+            </select>
+          </div>
+        </div>
+        <p>
+          Sex: <input type="radio" name="sex" /> Male
+          <input type="radio" name="sex" /> Female
+        </p>
+        <div style="text-align: right">
+          <button type="submit">Save</button>
+          <button
+            type="button"
+            onclick="location.href = 'exercise_5_table.html'"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
