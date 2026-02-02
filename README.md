@@ -37,7 +37,8 @@ Môn học giúp sinh viên làm quen với cách xây dựng website từ cơ b
 - 📁 **html/** – Các bài tập HTML  
 - 📁 **css/** – Styling và layout  
 - 📁 **js/** – JavaScript  
-- 📁 **assets/** – Hình ảnh, tài nguyên  
+- 📁 **assets/** – Hình ảnh, tài nguyên
+- 📁 **resuilt/** – Kết quả của bài thực hành
 - 📄 **README.md** – Giới thiệu dự án  
 
 ---
