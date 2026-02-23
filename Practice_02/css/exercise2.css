@@ -1,0 +1,42 @@
+/* Bước 1: Reset box-sizing cho toàn trang */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Bước 2: Style cho .posts container */
+.posts {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* Bước 3: Style cho .card */
+.card {
+  width: calc(30% - 20px);
+  display: inline-block;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  background: white;
+  border-radius: 8px;
+  vertical-align: top;
+  text-align: left;
+}
+
+/* Bước 4: Style cho .btn */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
