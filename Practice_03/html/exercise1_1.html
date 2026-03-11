@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bảng Điểm Sinh Viên</title>
+    <link rel="stylesheet" href="../css/exercise1_1.css" />
+  </head>
+  <body>
+    <h1>Bảng Điểm Sinh Viên</h1>
+    <div>
+      Họ Tên:<input type="text" id="input-name" placeholder="Nhập họ tên..." />
+      Điểm: <input type="number" id="input-score" placeholder="0-10" />
+      <button id="bt-add">Thêm</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Họ Tên</th>
+          <th>Điểm</th>
+          <th>Xếp Loại</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="students-body"></tbody>
+    </table>
+    <script src="../js/exercise1_1.js"></script>
+  </body>
+</html>
