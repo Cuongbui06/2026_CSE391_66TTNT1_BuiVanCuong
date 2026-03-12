@@ -39,3 +39,14 @@ button {
   padding: 10px 20px;
   font-size: 1rem;
 }
+
+.success-message {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 24px;
+  color: #4CAF50;
+}
+
+.success-message h2 {
+  margin-bottom: 20px;
+}
