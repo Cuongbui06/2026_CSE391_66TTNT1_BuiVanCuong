@@ -1,0 +1,158 @@
+<!doctype html>
+<!-- 
+  ============================================================================
+  QUẢN LÝ NHÂN SỰ - HỆ THỐNG QUẢN TRỊ DỮ LIỆU NHÂN VIÊN
+  ============================================================================
+  
+  Giải thích cho sinh viên:
+  - <!DOCTYPE html> là khai báo loại tài liệu (HTML5 là phiên bản mới nhất)
+  - <html> là thẻ gốc chứa toàn bộ nội dung trang web
+  - lang="vi" khai báo trang viết bằng tiếng Việt (để trình duyệt hiểu rõ)
+-->
+<html lang="en">
+  <head>
+  
+    <meta charset="UTF-8" />
+   
+    
+    <title>Conference Management</title>
+
+    
+    <link rel="stylesheet" href="style.css" />
+  
+  </head>
+  
+  <body>
+
+    <header>
+      <div class="header-content">
+
+        <h1 class="logo">Conference Management</h1>
+                <div class="search-box">
+          <input type="text" placeholder="Quick search..." />
+        </div>
+
+        <nav>
+          <a href="#">Home</a>
+         
+          <a href="#">List</a>
+          <button id="btnOpenModal" class="btn-primary">+ Thêm mới</button>
+          <a href="#">About</a>
+        </nav>
+        
+      
+
+      </div>
+    </header>
+
+   
+    <main class="container">
+
+      <div class="table-header">
+        <h2>Danh sách nhân sự</h2>
+       
+        
+      </div>
+
+     
+      <table id="employeeTable">
+        <!-- HEAD: Hàng tiêu đề (cột) -->
+        <thead>
+          <tr>
+
+            <th>Conference name</th>        
+            <th>Speakers</th>       
+            <th>Email</th>        
+            <th>Date</th> 
+            <th>Location</th>     
+          </tr>
+        </thead>
+        <!-- BODY: Hàng dữ liệu (sẽ được điền bằng JavaScript từ file data.js) -->
+        <tbody id="tableBody">
+          <!-- Phần này trống lúc đầu, JavaScript sẽ thêm dữ liệu vào đây -->
+        </tbody>
+      </table>
+    </main>
+
+
+    <div id="modalOverlay" class="modal-overlay">
+      <!-- Nội dung modal -->
+      <div class="modal-content">
+        <!-- Header của modal -->
+        <div class="modal-header">
+          <h3>Add new conference</h3>
+          <!-- ID btnCloseModal: Nút X để đóng modal -->
+          <span id="btnCloseModal" class="close-btn">&times;</span>
+        </div>
+
+        <!-- FORM NHẬP LIỆU -->
+        <form id="employeeForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Conference name</label>
+
+              <input
+                type="text"
+                id="Conference"
+                name="Conference"
+                maxlength="60"
+                required
+                placeholder="Event title"
+              />
+              <span class="error-msg" id="errorConference"></span>
+            </div>
+
+            <!-- TRƯỜNG: EMAIL -->
+            <div class="form-group">
+              <label>Speakers</label>
+              <input type="text" placeholder="Speaker name">
+            </div>
+          </div>
+
+          <div class="form-row">
+           
+            <div class="form-group">
+              <label>Email</label>
+
+              <input type="email" id="email" name="email" required placeholder="email@example.com"/>
+              <span class="error-msg" id="errorEmail"></span>
+            </div>
+
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" name="date" id="date">
+      
+            </div>
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" name="location" id="location" placeholder="Venue or address">
+            </div>
+          </div>
+
+
+          <div class="form-actions">
+        
+      
+            <button type="button" id="btnCancel" class="btn-cancel">Cancel</button>
+                        <button type="submit" class="btn-save">Save</button></div>
+
+
+          <div id="generalErrorMsg" class="general-error-msg"></div>
+        </form>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+
+    
+    <script src="assets/script.js"></script>
+
+  </body>
+</html>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,418 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* Font chữ: Segoe UI là font Windows, fallback sang các font khác */
+}
+
+/* Body - Toàn bộ trang */
+body {
+  background-color: #f4f7f6; /* Màu nền nhạt (ghi xanh) */
+  padding: 20px; /* Khoảng cách lề */
+  color: #333; /* Màu chữ mặc định (xám đen) */
+}
+
+/* Header chính */
+header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-radius: 12px; /* Góc bo tròn */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Bóng: dịch Y 5px, mờ 15px, đen 10% độ trong suốt */
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto; /* Canh giữa */
+  display: flex; /* Flex layout (xếp hàng) */
+  justify-content: space-between; /* Cách xa các phần tử */
+  align-items: center; /* Canh giữa theo chiều dọc */
+  padding: 0 30px;
+  gap: 20px; /* Khoảng cách giữa các phần tử flex */
+  flex-wrap: wrap; /* Khi màn hình nhỏ, tuần tự xuống hàng */
+}
+
+/* Logo */
+.logo {
+  font-size: 19px;
+  font-weight: bold; /* Chữ đậm */
+  letter-spacing: 1px; /* Khoảng cách giữa các chữ */
+}
+
+/* Navigation menu */
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none; /* Xóa gạch chân link */
+  transition: 0.3s; /* Hiệu ứng mượt 0.3 giây */
+  padding: 8px 0;
+}
+
+/* Khi hover vào link */
+nav a:hover {
+  border-bottom: 2px solid white; /* Underline (gạch dưới) khi hover */
+}
+
+/* Hộp tìm kiếm */
+.search-box {
+  display: flex;
+  gap: 8px;
+}
+
+.search-box input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff; /* Nền trắng */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Bóng nhẹ */
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between; /* H2 bên trái, button bên phải */
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+h2 {
+  color: #2c3e50;
+  text-transform: uppercase; /* Chữ in hoa */
+  letter-spacing: 1px;
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Nút "+ Thêm mới" */
+.btn-primary {
+  background-color: #5141a1; /* Xanh lá cây */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
+  white-space: nowrap; /* Không xuống hàng */
+}
+
+.btn-primary:hover {
+  background-color: #229954; /* Xanh lá đậm hơn */
+  transform: translateY(-2px); /* Nút nhảy lên 2px (3D effect) */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Bóng lớn hơn khi hover */
+}
+
+/* Bảng chính */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Gộp border thành 1 (không có khoảng trắng) */
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Phần header của bảng (hàng tiêu đề) */
+thead {
+  background-color: #34495e; /* Xám đen */
+  color: white;
+}
+
+/* Các ô (cột) trong bảng */
+th,
+td {
+  padding: 15px;
+  text-align: left; /* Căn trái */
+  border-bottom: 1px solid #eee; /* Đường kẻ ngang nhẹ */
+}
+
+th {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+tbody tr {
+  transition: 0.3s; /* Mượt mà */
+}
+
+/* ============================================================================
+   PHẦN 5: MODAL POPUP - CỬA SỔ BẬT LÊN
+   ============================================================================ */
+
+/**
+ * Modal Overlay = lớp nền mờ (backdrop)
+ * 
+ * position: fixed = cố định vị trí (không cuộn cùng trang)
+ * top/left/width/height: 0/100% = chiếm toàn bộ màn hình
+ * display: none = ẩn mặc định, show khi user click nút "Thêm mới"
+ * justify-content/align-items: center = canh giữa icon/content
+ * z-index: 1000 = ở trên cùng (không bị phía dưới)
+ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Đen 50% độ trong suốt */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ở phía trên tất cả phần tử */
+}
+
+.modal-overlay.active {
+  display: flex; /* Class "active" để show modal */
+}
+
+/* Nội dung bên trong modal */
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px; /* Không quá rộng */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Bóng sâu */
+  animation: slideIn 0.3s ease-in-out; /* Animation slide từ trên xuống */
+}
+
+/**
+ * @keyframes slideIn - Animation định nghĩa
+ * 
+ * from { } = trạng thái bắt đầu
+ * to { } = trạng thái kết thúc
+ * 0.3s = thời gian chạy
+ */
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px); /* Bắt đầu từ trên 50px */
+    opacity: 0; /* Hoàn toàn trong suốt */
+  }
+  to {
+    transform: translateY(0); /* Kết thúc ở vị trí bình thường */
+    opacity: 1; /* Hoàn toàn đục */
+  }
+}
+
+/* Header của modal */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ecf0f1; /* Đường kẻ dưới */
+  padding-bottom: 15px;
+}
+
+.modal-header h3 {
+  color: #2c3e50;
+  font-size: 22px;
+}
+
+/* Nút X đóng */
+.close-btn {
+  font-size: 32px;
+  font-weight: bold;
+  color: #7f8c8d;
+  cursor: pointer;
+  transition: 0.3s;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #e74c3c; /* Đỏ khi hover */
+}
+
+/* ============================================================================
+   PHẦN 6: FORM - NHẬP LIỆU
+   ============================================================================ */
+
+form {
+  display: flex;
+  flex-direction: column; /* Xếp chồng lên nhau */
+  gap: 20px;
+}
+
+/* Dòng form (chứa nhiều trường) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 cột bằng nhau */
+  gap: 15px;
+}
+
+.form-row.full {
+  grid-template-columns: 1fr; /* 1 cột toàn bộ */
+}
+
+/* Nhóm form (input + label + error) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+/* Input và Select */
+.form-group input,
+.form-group select {
+  padding: 12px 15px;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: 0.3s;
+  font-family: inherit; /* Kế thừa font từ parent */
+}
+
+/* Khi focus (click vào input) */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #3498db; /* Border xanh */
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3); /* Bóng xanh */
+  outline: none; /* Xóa outline mặc định */
+}
+
+.form-group input::placeholder {
+  color: #95a5a6; /* Placeholder xám nhạt */
+}
+
+/* Input/Select mặc định (cho các input khác) */
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.error-msg {
+  color: #e74c3c; /* Đỏ */
+  font-size: 12px;
+  display: block;
+  min-height: 14px; /* Chiễu cao tối thiểu (để tránh thay đổi layout) */
+  margin-top: 4px;
+}
+
+.general-error-msg {
+  color: #e74c3c; /* Đỏ */
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  min-height: 16px; /* Để tránh thay đổi layout khi hiện/ẩn */
+}
+
+/* Input khi có lỗi (CSS class .error được thêm bằng JS) */
+.form-group input.error,
+.form-group select.error {
+  border-color: #e74c3c; /* Border đỏ */
+  background-color: #fadbd8; /* Nền hồng nhạt */
+}
+
+/* ============================================================================
+   PHẦN 9: NÚT HÀNH ĐỘNG (CÁC NÚT - BUTTONS)
+   ============================================================================ */
+
+/* Container chứa nút Lưu/Hủy */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end; /* Nút floated về bên phải */
+  margin-top: 20px;
+  border-top: 1px solid #ecf0f1;
+  padding-top: 20px;
+}
+
+/* Nút Lưu/Hủy */
+.btn-save,
+.btn-cancel {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* Nút Lưu (xanh) */
+.btn-save {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-save:hover {
+  background-color: #229954;
+  transform: translateY(-2px); /* Nút nhảy lên */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Nút Hủy (xám) */
+.btn-cancel {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #7f8c8d; /* Xám đậm */
+}
+
+/* Nút Sửa trong bảng (xanh) */
+.btn-edit {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.btn-edit:hover {
+  background: #2980b9; /* Xanh đậm */
+}
+
+/* Nút Xóa trong bảng (đỏ) */
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 5px;
+  transition: 0.3s;
+}
+
+.btn-delete:hover {
+  background: #c0392b; /* Đỏ đậm */
+}
